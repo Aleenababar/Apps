@@ -53,7 +53,7 @@ const configHeaders ={
 useEffect(() => {
   const fetch = async () => {
     try {
-      const response = await axios.get("http://localhost:1000/api/v2/get-all-tasks", { headers : configHeaders ,}
+      const response = await axios.get(`${import.meta.env.Frontend_URI}/api/v2/get-all-tasks`, { headers : configHeaders ,}
 
       );
       setData(response.data.data);
