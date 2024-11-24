@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IoCreateSharp } from "react-icons/io5";
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
@@ -8,13 +8,14 @@ import { FaRegEdit } from "react-icons/fa";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import TaskCounters from "./Taskcounter";
 
 const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
   const configHeaders = {
     Id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
- const [importantTasks,setImportantTasks] =useState([]);
+ 
   const handleCompleteTask = async (id) => {
     try {
       const response = await axios.put(
@@ -72,6 +73,7 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
       console.log(error);
     }
   };
+  
 
   return (
     <div className="grid grid-cols-3 gap-4 p-4">
@@ -93,7 +95,7 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
               <button
                 className={`${
                   item?.complete ? "bg-red-600" : "bg-green-500"
-                } rounded p-2 w-3/6`}
+                } rounded p-2 w-4/6`}
                 onClick={() => {if(item?.complete)return toast.success("Task is already completed!"); handleCompleteTask(item?._id)}}
               >
                 {item?.complete ? "Completed" : "Incomplete"}
@@ -132,7 +134,10 @@ const Card = ({ home, setInputDiv, data, fetch, setUpdatedData }) => {
         </button>
       )}
       <ToastContainer />
+      <div><TaskCounters data={data}/></div>
+      
     </div>
+    
   );
 };
 

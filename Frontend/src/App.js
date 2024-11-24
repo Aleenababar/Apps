@@ -21,7 +21,7 @@ function App() {
       dispatch(authActions.login());
     }
     else if (isLoggedIn === false) {
-      navigate("/signup");
+      navigate("/login");
     }
     // eslint-disable-next-line
   },[]);
@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="p-2 bg-gray-900 text-white h-screen relative">
       <Routes>
-        <Route exact path="/" element={<Home />}>
+        <Route exact path="/" element={<Home/>}>
           <Route index element={<Alltask />} />
           <Route exact path="/importanttask" element={<Importanttask />} />
           <Route exact path="/completedtask" element={<Completedtask />} />
