@@ -23,7 +23,7 @@ router.get("/get-all-tasks", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
     const userData = await User.findById(id).populate({path:"tasks",options:{sort:{createdAt:-1}},});
-    res.status(200).json({ data: userData });
+    res.status(200).json({ data : userData }); 
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -33,11 +33,10 @@ router.get("/get-all-tasks", authenticateToken, async (req, res) => {
 router.delete("/delete-task/:id",authenticateToken,async (req,res)=>{
   try {
     const {id} =req.params;
-    const userId= req.headers.id;
+    const userId= req.headers.id;  
     await Task.findByIdAndDelete(id);
     await User.findByIdAndUpdate(userId,{$pull:{tasks:id}});
     res.status(200).json({message:"Task deleted successfully!"});
-
     
   } catch (error) {
     

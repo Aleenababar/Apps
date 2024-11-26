@@ -8,7 +8,7 @@ const TaskCounters = ({ data }) => {
   const importantTasks = data?.filter((task) => task.important)?.length || 0;
 
   return (
-    <div className="bg-gray-800 text-gray-300 rounded-md p-4 mb-4">
+    <div className="bg-gray-800 text-gray-300 rounded-md p-4 mb-4 fixed bottom-4 right-4 shadow-lg">
       <h2 className="text-2xl font-semibold mb-2">Task Overview</h2>
       <p>Total Tasks: {totalTasks}</p>
       <p>Completed Tasks: {completedTasks}</p>
