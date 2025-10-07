@@ -5,16 +5,6 @@ const conn = require("./conn/conn");
 const cors =require("cors");
 const UserAPI = require("./routes/user");
 const TaskAPI =require("./routes/task");
-const path = require("path");
-
-// Serve frontend build (React)
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-// For SPA routing
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
-
 app.use (cors());
 app.use(express.json());
 conn();
